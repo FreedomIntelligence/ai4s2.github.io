@@ -105,7 +105,7 @@ function renderMediaFilters(collections, allItems) {
   }
 
   const filterOptions = [
-    { id: "all", label: `全部素材 (${allItems.length})`, items: allItems },
+    { id: "all", label: `All assets (${allItems.length})`, items: allItems },
     ...collections.map((collection) => ({
       id: collection.id,
       label: `${collection.title} (${collection.itemCount})`,
@@ -144,15 +144,15 @@ async function loadMediaLibrary() {
     const collections = manifest.collections || [];
     const allItems = flattenMedia(collections);
 
-    mediaCount.textContent = `${allItems.length} 个 PPT 原始素材，来自 ${collections.length} 份演示文稿`;
+    mediaCount.textContent = `${allItems.length} original PPT media assets across ${collections.length} decks`;
     renderMediaFilters(collections, allItems);
     renderMediaCards(allItems);
 
     if (mediaStatus) {
-      mediaStatus.textContent = "图片会延迟载入，点击后在新标签页打开原始文件。";
+      mediaStatus.textContent = "Images are lazy-loaded and open as original files in a new tab.";
     }
   } catch (error) {
-    mediaCount.textContent = "多媒体素材暂时无法载入。";
+    mediaCount.textContent = "Media assets are unavailable right now.";
     if (mediaStatus) {
       mediaStatus.textContent = error.message;
     }
