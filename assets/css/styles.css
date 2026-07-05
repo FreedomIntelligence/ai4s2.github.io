@@ -273,6 +273,35 @@ p + p {
   gap: 18px;
 }
 
+.insight-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.insight-card {
+  min-height: 220px;
+  padding: 24px;
+  border: 1px solid var(--line);
+  background: #fff;
+}
+
+.insight-card span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  margin-bottom: 42px;
+  border: 1px solid var(--green);
+  color: var(--green);
+  font-weight: 800;
+}
+
+.insight-card p {
+  color: var(--muted);
+}
+
 .framework-panel,
 .direction-card,
 .stat-box {
@@ -405,6 +434,24 @@ figcaption {
 
 .evidence p {
   color: rgba(255, 255, 255, 0.78);
+}
+
+.timeline {
+  display: grid;
+  gap: 12px;
+}
+
+.timeline div {
+  padding: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.timeline time {
+  display: block;
+  margin-bottom: 8px;
+  color: #9fe0ca;
+  font-weight: 800;
 }
 
 .gallery {
@@ -632,6 +679,7 @@ figcaption {
   .evidence-grid,
   .team-grid,
   .contact-grid,
+  .insight-grid,
   .framework,
   .direction-grid,
   .project-grid {
@@ -648,6 +696,7 @@ figcaption {
   }
 
   .framework-panel,
+  .insight-card,
   .direction-card {
     min-height: auto;
   }
