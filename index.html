@@ -34,7 +34,7 @@
         <a href="#directions">Directions</a>
         <a href="#projects">Projects</a>
         <a href="#faculty">Faculty</a>
-        <a href="#media">Media</a>
+        <a href="#blog">Blog</a>
       </nav>
     </header>
 
@@ -53,7 +53,7 @@
           </p>
           <div class="hero-actions">
             <a class="button primary" href="#faculty">Meet the Faculty</a>
-            <a class="button secondary" href="#media">Browse Media Assets</a>
+            <a class="button secondary" href="#blog">Read Featured Blog</a>
           </div>
         </div>
       </section>
@@ -187,11 +187,132 @@
         </div>
       </section>
 
-      <section class="section" id="projects">
+      <section class="section project-section" id="projects">
         <div class="section-inner">
           <div class="section-heading wide">
             <p class="section-kicker">Priority Projects</p>
             <h2>Digital social sandboxes for high-complexity decision-making.</h2>
+          </div>
+
+          <article class="project-feature">
+            <div class="project-feature-copy">
+              <span class="project-label">Strategic Focus Project | 2026.03 - 2028.03</span>
+              <h3>Economic World Model</h3>
+              <p class="project-lede">
+                A foundation-model and LLM-agent platform for social and market simulation, designed to turn economic
+                systems into controllable, reproducible, and explainable digital sandboxes.
+              </p>
+              <p>
+                Led by Prof. Lin William Cong, the project defines an Economic World Model as a co-evolving system of
+                agents and environments. It models endogenous market feedback, heterogeneous preferences, institutional
+                rules, and reflexive belief updates so that policies, investment strategies, enterprise decisions, and
+                mechanism designs can be tested before real-world deployment.
+              </p>
+              <div class="project-meta-grid" aria-label="Economic World Model project facts">
+                <div>
+                  <span>Budget</span>
+                  <strong>RMB 15M</strong>
+                  <small>excluding compute</small>
+                </div>
+                <div>
+                  <span>Scope</span>
+                  <strong>Macro Sandbox</strong>
+                  <small>finance, policy, firms, households</small>
+                </div>
+                <div>
+                  <span>Status</span>
+                  <strong>Demo Built</strong>
+                  <small>financial-market prototype validated</small>
+                </div>
+              </div>
+            </div>
+            <figure class="project-feature-visual">
+              <img
+                src="./assets/img/economic-world-model-system.jpg"
+                alt="Economic World Model simulation system prototype interface"
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption>
+                Prototype interface for the initial Economic World Model simulation system, with banks, firms,
+                households, jobs, stores, stocks, government, and data nodes.
+              </figcaption>
+            </figure>
+          </article>
+
+          <div class="project-detail-grid">
+            <article class="project-detail-card accent-blue">
+              <span class="project-number">01</span>
+              <h4>World-Model Research Stack</h4>
+              <ul>
+                <li>Economic intelligence base with knowledge injection and rule constraints.</li>
+                <li>Unified environment generation for heterogeneous market and policy settings.</li>
+                <li>Closed-loop co-evolution among people, environments, and AI agents.</li>
+                <li>Scenario validation for financial decision rehearsal and policy simulation.</li>
+              </ul>
+            </article>
+            <article class="project-detail-card accent-green">
+              <span class="project-number">02</span>
+              <h4>Prototype Economy</h4>
+              <ul>
+                <li>Heterogeneous households, firms, commercial banks, central bank, and government agents.</li>
+                <li>Loan, labor, goods, stock, and deposit markets with sequential clearing.</li>
+                <li>Macro indicators, policy parameters, and narrative news as shared information environment.</li>
+                <li>Designed to scale from large agent populations toward million-level parallel simulation.</li>
+              </ul>
+            </article>
+            <article class="project-detail-card accent-rose">
+              <span class="project-number">03</span>
+              <h4>Agent Decision Pipeline</h4>
+              <ul>
+                <li>Observation injects agent attributes and decision-relevant environment signals.</li>
+                <li>Belief generates short market judgments before actions are taken.</li>
+                <li>Price emits structured willingness-to-pay, rate, or valuation outputs.</li>
+                <li>Action selects participation and ratios, then clamps results with economic constraints.</li>
+              </ul>
+            </article>
+          </div>
+
+          <div class="project-visual-grid">
+            <figure class="project-visual-panel">
+              <img
+                src="./assets/img/economic-world-model-architecture.jpg"
+                alt="Economic World Model backend architecture with agents and market clearing"
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption>
+                Backend architecture: heterogeneous LLM agents interact with loan, labor, goods, stock, and deposit
+                markets, while policy decisions and information signals update both agents and the environment.
+              </figcaption>
+            </figure>
+            <div class="project-side-stack">
+              <article class="project-note">
+                <h4>Current Progress</h4>
+                <p>
+                  The team has completed an initial financial-market simulation demo, started a public initiative for
+                  influence and data partnerships, and is planning an Economic Personality Test mini-game to collect
+                  behavioral signals for agent initialization.
+                </p>
+              </article>
+              <figure class="project-visual-panel compact">
+                <img
+                  src="./assets/img/economic-personality-epti.png"
+                  alt="Economic Personality Test output across time preference, risk attitude, market stance, and consumption taste"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <figcaption>
+                  EPTI maps user behavior into time preference, risk attitude, market stance, and consumption taste,
+                  creating a human-data loop for training richer initial agent states.
+                </figcaption>
+              </figure>
+            </div>
+          </div>
+
+          <div class="project-subheading">
+            <p class="section-kicker">Applied Tracks</p>
+            <h3>Extending the sandbox across finance, governance, health, and education.</h3>
           </div>
           <div class="project-grid">
             <article class="project-card">
@@ -350,6 +471,60 @@
         </div>
       </section>
 
+      <section class="section blog-section" id="blog">
+        <div class="section-inner">
+          <div class="section-heading wide">
+            <p class="section-kicker">Blog</p>
+            <h2>Featured thinking from AI4S2 faculty.</h2>
+            <p>
+              Interviews and essays that connect social intelligence, language-centered AI, and real-world deployment.
+            </p>
+          </div>
+          <article class="blog-feature">
+            <a
+              class="blog-image"
+              href="https://freedomintelligence.github.io/blog/2026/slai-open-day-interview/"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Read the SLAI Open Day interview with Benyou Wang"
+            >
+              <img
+                src="./assets/img/benyou-wang-slai-open-day.jpg"
+                alt="Benyou Wang interviewed at the Shenzhen Loop Area Institute Open Day"
+                loading="lazy"
+                decoding="async"
+              />
+            </a>
+            <div class="blog-content">
+              <span class="blog-label">Featured Interview | SLAI Open Day</span>
+              <h3>
+                <a href="https://freedomintelligence.github.io/blog/2026/slai-open-day-interview/" target="_blank" rel="noreferrer">
+                  Benyou Wang (&#29579;&#26412;&#21451;): Building AI for worlds that think back
+                </a>
+              </h3>
+              <p>
+                In a Freedom AI interview from the SLAI Open Day, Wang Benyou outlines an AI4S2 agenda for modeling
+                belief-driven social systems, building closed-loop deployment pathways, and treating language as the
+                organizing medium for embodied, scientific, and social intelligence.
+              </p>
+              <div class="blog-points" aria-label="Interview themes">
+                <span>Economic world models must include agents, incentives, institutions, and belief updates.</span>
+                <span>Real deployment depends on feedback loops, fallback mechanisms, and trustworthy workflows.</span>
+                <span>Young researchers are encouraged to connect papers with real scenarios and real constraints.</span>
+              </div>
+              <a
+                class="button blog-link"
+                href="https://freedomintelligence.github.io/blog/2026/slai-open-day-interview/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Read the Interview
+              </a>
+            </div>
+          </article>
+        </div>
+      </section>
+
       <section class="section evidence">
         <div class="section-inner evidence-grid">
           <div>
@@ -374,25 +549,6 @@
               <p>AI for Social Science and Economic World Models</p>
             </div>
           </div>
-        </div>
-      </section>
-
-      <section class="section media-library" id="media">
-        <div class="section-inner">
-          <div class="section-heading wide">
-            <p class="section-kicker">Media Library</p>
-            <h2>PPT visual assets remain available as a browsable archive.</h2>
-            <p>
-              The original embedded media from the project-highlight and AI4S2 introduction decks is preserved here for
-              reports, slides, public communication, and future website updates.
-            </p>
-          </div>
-          <div class="media-library-head">
-            <div class="media-count" data-media-count>Loading media assets...</div>
-            <div class="media-filters" aria-label="Media library filters" data-media-filters></div>
-          </div>
-          <div class="media-grid" data-media-gallery></div>
-          <p class="media-status" data-media-status></p>
         </div>
       </section>
 
