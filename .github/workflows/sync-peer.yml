@@ -154,7 +154,10 @@ jobs:
           set -euo pipefail
           rm -rf target/_site
           mkdir target/_site
-          cp -R target/assets target/favicon.svg target/index.html target/README.md target/_site/
+          cp -R target/assets target/favicon.svg target/README.md target/*.html target/_site/
+          if [[ -d target/blog ]]; then
+            cp -R target/blog target/_site/
+          fi
           touch target/_site/.nojekyll
 
       - name: Upload artifact

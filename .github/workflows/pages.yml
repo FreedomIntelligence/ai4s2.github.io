@@ -30,7 +30,10 @@ jobs:
       - name: Prepare static site
         run: |
           mkdir _site
-          cp -R assets favicon.svg index.html README.md _site/
+          cp -R assets favicon.svg README.md *.html _site/
+          if [ -d blog ]; then
+            cp -R blog _site/
+          fi
           touch _site/.nojekyll
 
       - name: Upload artifact
