@@ -1,0 +1,191 @@
+name: Sync Peer Repository
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "7,22,37,52 * * * *"
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: peer-sync
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout this repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          path: target
+
+      - name: Sync from peer when needed
+        id: sync
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          case "${GITHUB_REPOSITORY}" in
+            ai4s2/ai4s2.github.io)
+              PEER_REPO="FreedomIntelligence/ai4s2.github.io"
+              ;;
+            FreedomIntelligence/ai4s2.github.io)
+              PEER_REPO="ai4s2/ai4s2.github.io"
+              ;;
+            *)
+              echo "Unsupported repository: ${GITHUB_REPOSITORY}" >&2
+              exit 1
+              ;;
+          esac
+
+          TARGET="${GITHUB_WORKSPACE}/target"
+          PEER="${GITHUB_WORKSPACE}/peer"
+          STATE_FILE="${TARGET}/.github/sync-state.json"
+          DEPLOY="false"
+          CHANGED="false"
+
+          git clone --depth 1 "https://github.com/${PEER_REPO}.git" "$PEER"
+
+          content_hash() {
+            local root="$1"
+            (
+              cd "$root"
+              find . -type f \
+                ! -path './.git/*' \
+                ! -path './.github/sync-state.json' \
+                ! -path './.github/workflows/*' \
+                -print0 |
+              sort -z |
+              while IFS= read -r -d '' file; do
+                local file_hash file_size rel_path
+                file_hash="$(sha256sum "$file" | awk '{print $1}')"
+                file_size="$(wc -c < "$file" | tr -d '[:space:]')"
+                rel_path="${file#./}"
+                printf '%s  %s  %s\n' "$file_hash" "$file_size" "$rel_path"
+              done
+            ) | sha256sum | awk '{print $1}'
+          }
+
+          read_state_hash() {
+            local file="$1"
+            if [[ ! -f "$file" ]]; then
+              printf ''
+              return 0
+            fi
+            python3 - "$file" <<'PY'
+import json
+import sys
+
+try:
+    with open(sys.argv[1], "r", encoding="utf-8") as handle:
+        print(json.load(handle).get("lastSyncedHash", ""))
+except Exception:
+    print("")
+PY
+          }
+
+          write_state() {
+            local hash="$1"
+            mkdir -p "$(dirname "$STATE_FILE")"
+            python3 - "$STATE_FILE" "$hash" "$PEER_REPO" <<'PY'
+import datetime
+import json
+import sys
+
+path, content_hash, peer = sys.argv[1:4]
+payload = {
+    "lastSyncedHash": content_hash,
+    "updatedAt": datetime.datetime.now(datetime.timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z"),
+    "peer": peer,
+    "note": "Content hash excludes .git, .github/sync-state.json, and .github/workflows."
+}
+with open(path, "w", encoding="utf-8", newline="\n") as handle:
+    json.dump(payload, handle, indent=2)
+    handle.write("\n")
+PY
+          }
+
+          commit_changes() {
+            local message="$1"
+            git -C "$TARGET" config user.name "github-actions[bot]"
+            git -C "$TARGET" config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git -C "$TARGET" add -A
+            if git -C "$TARGET" diff --cached --quiet; then
+              CHANGED="false"
+            else
+              git -C "$TARGET" commit -m "$message"
+              git -C "$TARGET" push
+              CHANGED="true"
+            fi
+          }
+
+          TARGET_HASH="$(content_hash "$TARGET")"
+          SOURCE_HASH="$(content_hash "$PEER")"
+          LAST_SYNCED_HASH="$(read_state_hash "$STATE_FILE")"
+
+          echo "Current repo hash: ${TARGET_HASH}"
+          echo "Peer repo hash: ${SOURCE_HASH}"
+          echo "Last synced hash: ${LAST_SYNCED_HASH:-<none>}"
+
+          if [[ "$TARGET_HASH" == "$SOURCE_HASH" ]]; then
+            if [[ "$LAST_SYNCED_HASH" != "$TARGET_HASH" ]]; then
+              write_state "$TARGET_HASH"
+              commit_changes "Record peer sync state"
+            fi
+          elif [[ -n "$LAST_SYNCED_HASH" && "$TARGET_HASH" == "$LAST_SYNCED_HASH" ]]; then
+            rsync -a --delete \
+              --exclude='.git/' \
+              --exclude='.github/sync-state.json' \
+              --exclude='.github/workflows/' \
+              "${PEER}/" "${TARGET}/"
+
+            NEW_TARGET_HASH="$(content_hash "$TARGET")"
+            write_state "$NEW_TARGET_HASH"
+            commit_changes "Sync from ${PEER_REPO}"
+            if [[ "$CHANGED" == "true" ]]; then
+              DEPLOY="true"
+            fi
+          elif [[ -n "$LAST_SYNCED_HASH" && "$SOURCE_HASH" == "$LAST_SYNCED_HASH" ]]; then
+            echo "This repository has local changes since the last sync. The peer will pull them on its next run."
+          else
+            cat <<EOF >&2
+Both repositories changed since the last shared sync state.
+This workflow stopped to avoid overwriting either side.
+
+Current repository: ${GITHUB_REPOSITORY} (${TARGET_HASH})
+Peer repository: ${PEER_REPO} (${SOURCE_HASH})
+Last synced hash: ${LAST_SYNCED_HASH:-<none>}
+EOF
+            exit 1
+          fi
+
+          echo "deploy=${DEPLOY}" >> "$GITHUB_OUTPUT"
+
+      - name: Configure Pages
+        if: steps.sync.outputs.deploy == 'true'
+        uses: actions/configure-pages@v5
+
+      - name: Prepare static site
+        if: steps.sync.outputs.deploy == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf target/_site
+          mkdir target/_site
+          cp -R target/assets target/favicon.svg target/index.html target/README.md target/_site/
+          touch target/_site/.nojekyll
+
+      - name: Upload artifact
+        if: steps.sync.outputs.deploy == 'true'
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: target/_site
+
+      - name: Deploy to GitHub Pages
+        if: steps.sync.outputs.deploy == 'true'
+        uses: actions/deploy-pages@v4
