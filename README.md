@@ -6,6 +6,10 @@ Static homepage for the Center for AI for Social Science.
 
 Selected homepage images and faculty photos are stored under `assets/img/` and `assets/media/ppt/`.
 
+## Blog Structure
+
+Blog entries are plain static pages under `blog/<year>/<slug>/index.html`. The listing page at `blog/index.html` links to each entry, while the homepage `#blog` section highlights selected posts.
+
 ## GitHub Pages URLs
 
 This site uses only relative asset paths, so the same code can be hosted at both:
