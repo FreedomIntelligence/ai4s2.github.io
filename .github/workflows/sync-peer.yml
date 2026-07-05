@@ -77,37 +77,13 @@ jobs:
               printf ''
               return 0
             fi
-            python3 - "$file" <<'PY'
-import json
-import sys
-
-try:
-    with open(sys.argv[1], "r", encoding="utf-8") as handle:
-        print(json.load(handle).get("lastSyncedHash", ""))
-except Exception:
-    print("")
-PY
+            python3 -c 'import json, sys; print(json.load(open(sys.argv[1], encoding="utf-8")).get("lastSyncedHash", ""))' "$file" 2>/dev/null || printf ''
           }
 
           write_state() {
             local hash="$1"
             mkdir -p "$(dirname "$STATE_FILE")"
-            python3 - "$STATE_FILE" "$hash" "$PEER_REPO" <<'PY'
-import datetime
-import json
-import sys
-
-path, content_hash, peer = sys.argv[1:4]
-payload = {
-    "lastSyncedHash": content_hash,
-    "updatedAt": datetime.datetime.now(datetime.timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z"),
-    "peer": peer,
-    "note": "Content hash excludes .git, .github/sync-state.json, and .github/workflows."
-}
-with open(path, "w", encoding="utf-8", newline="\n") as handle:
-    json.dump(payload, handle, indent=2)
-    handle.write("\n")
-PY
+            python3 -c 'import datetime, json, sys; path, content_hash, peer = sys.argv[1:4]; payload = {"lastSyncedHash": content_hash, "updatedAt": datetime.datetime.now(datetime.timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z"), "peer": peer, "note": "Content hash excludes .git, .github/sync-state.json, and .github/workflows."}; open(path, "w", encoding="utf-8", newline="\n").write(json.dumps(payload, indent=2) + "\n")' "$STATE_FILE" "$hash" "$PEER_REPO"
           }
 
           commit_changes() {
@@ -153,14 +129,13 @@ PY
           elif [[ -n "$LAST_SYNCED_HASH" && "$SOURCE_HASH" == "$LAST_SYNCED_HASH" ]]; then
             echo "This repository has local changes since the last sync. The peer will pull them on its next run."
           else
-            cat <<EOF >&2
-Both repositories changed since the last shared sync state.
-This workflow stopped to avoid overwriting either side.
-
-Current repository: ${GITHUB_REPOSITORY} (${TARGET_HASH})
-Peer repository: ${PEER_REPO} (${SOURCE_HASH})
-Last synced hash: ${LAST_SYNCED_HASH:-<none>}
-EOF
+            printf '%s\n' \
+              "Both repositories changed since the last shared sync state." \
+              "This workflow stopped to avoid overwriting either side." \
+              "" \
+              "Current repository: ${GITHUB_REPOSITORY} (${TARGET_HASH})" \
+              "Peer repository: ${PEER_REPO} (${SOURCE_HASH})" \
+              "Last synced hash: ${LAST_SYNCED_HASH:-<none>}" >&2
             exit 1
           fi
 
