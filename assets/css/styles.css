@@ -11,6 +11,9 @@
   --gold: #b88226;
   --violet: #6c5eb5;
   --cyan: #14879b;
+  --slai-purple: #5524ee;
+  --slai-ink: #1d1348;
+  --slai-soft: #f4f0ff;
   --shadow: 0 18px 50px rgba(29, 37, 44, 0.12);
 }
 
@@ -77,6 +80,22 @@ img {
   letter-spacing: 0;
 }
 
+.brand-logo-wrap {
+  display: grid;
+  place-items: center;
+  width: 104px;
+  height: 44px;
+  padding: 6px 8px;
+  border: 1px solid rgba(255, 255, 255, 0.62);
+  background: #fff;
+}
+
+.brand-logo {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
 .brand-mark {
   display: grid;
   place-items: center;
@@ -87,8 +106,17 @@ img {
 }
 
 .brand-text {
-  font-size: 14px;
+  display: grid;
+  gap: 1px;
+  color: inherit;
+  font-size: 13px;
   font-weight: 700;
+  line-height: 1.15;
+}
+
+.brand-text span:first-child {
+  font-size: 14px;
+  font-weight: 800;
 }
 
 .site-nav {
@@ -157,6 +185,15 @@ img {
   padding-top: 64px;
 }
 
+.hero-logo {
+  width: min(270px, 62vw);
+  margin: 0 0 28px;
+  padding: 16px 18px;
+  border: 1px solid rgba(255, 255, 255, 0.42);
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: 0 20px 52px rgba(0, 0, 0, 0.18);
+}
+
 .eyebrow,
 .section-kicker {
   margin: 0 0 16px;
@@ -213,6 +250,88 @@ img {
 
 .button.secondary {
   color: #fff;
+}
+
+.slai-band {
+  border-bottom: 1px solid rgba(85, 36, 238, 0.18);
+  background: var(--slai-soft);
+}
+
+.slai-band-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(220px, 0.58fr) minmax(190px, 0.42fr);
+  gap: 28px;
+  align-items: center;
+  padding: 26px 0;
+}
+
+.slai-tag {
+  display: inline-flex;
+  margin-bottom: 8px;
+  color: var(--slai-purple);
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.slai-identity h2 {
+  margin: 0;
+  color: var(--slai-ink);
+  font-size: clamp(24px, 3vw, 38px);
+  line-height: 1.08;
+}
+
+.slai-identity p {
+  max-width: 690px;
+  margin: 10px 0 0;
+  color: #514a67;
+  font-size: 15px;
+}
+
+.slai-motto {
+  min-height: 132px;
+  padding: 20px;
+  border-left: 5px solid var(--slai-purple);
+  background: #fff;
+}
+
+.slai-motto span {
+  display: block;
+  color: var(--slai-purple);
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0;
+}
+
+.slai-motto strong {
+  display: block;
+  margin-top: 14px;
+  color: var(--slai-ink);
+  font-size: 30px;
+  line-height: 1.15;
+}
+
+.slai-links {
+  display: grid;
+  gap: 10px;
+}
+
+.slai-links a {
+  display: flex;
+  align-items: center;
+  min-height: 46px;
+  padding: 12px 14px;
+  border: 1px solid rgba(85, 36, 238, 0.28);
+  background: #fff;
+  color: var(--slai-ink);
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.slai-links a:hover {
+  border-color: var(--slai-purple);
+  color: var(--slai-purple);
 }
 
 .page-hero {
@@ -1014,6 +1133,7 @@ figcaption {
   .direction-grid,
   .faculty-grid,
   .faculty-grid.compact,
+  .slai-band-inner,
   .blog-feature,
   .project-feature,
   .project-detail-grid,
@@ -1076,8 +1196,17 @@ figcaption {
     top: 62px;
   }
 
+  .brand-logo-wrap {
+    width: 92px;
+    height: 40px;
+  }
+
   .hero {
     min-height: 760px;
+  }
+
+  .hero-logo {
+    width: min(220px, 72vw);
   }
 
   .page-hero {
@@ -1111,6 +1240,10 @@ figcaption {
   }
 
   .project-meta-grid div {
+    min-height: auto;
+  }
+
+  .slai-motto {
     min-height: auto;
   }
 
