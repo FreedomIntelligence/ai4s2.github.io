@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Benyou Wang discusses economic world models, loop engineering, SLAI, language-centered AI, and advice for young researchers at the SLAI Open Day."
+    />
+    <title>Interview on the SLAI Open Day | AI4S2 Blog</title>
+    <link rel="icon" href="../../../favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../../../assets/css/styles.css" />
+  </head>
+  <body class="subpage article-page">
+    <header class="site-header" data-header>
+      <a class="brand" href="../../../" aria-label="AI4S2 home">
+        <span class="brand-logo-wrap">
+          <img class="brand-logo" src="../../../assets/img/ai4s2-center-logo.png" alt="" />
+        </span>
+        <span class="brand-text">
+          <span>&#31038;&#20250;&#31185;&#23398;&#26234;&#33021;&#20013;&#24515;</span>
+          <span>AI for Social Science</span>
+        </span>
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" data-nav-toggle>
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <nav class="site-nav" id="site-nav" data-nav>
+        <a href="../../../#about">About</a>
+        <a href="../../../projects.html">Projects</a>
+        <a href="../../../faculty.html">Faculty</a>
+        <a href="../../">Blog</a>
+        <a href="https://www.slai.edu.cn/" target="_blank" rel="noreferrer">SLAI</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <article>
+        <header class="article-hero">
+          <div class="section-inner article-hero-inner">
+            <a class="article-back" href="../../">Blog</a>
+            <p class="section-kicker">Featured Interview | SLAI Open Day</p>
+            <h1>Interview on the SLAI Open Day: Building AI for worlds that think back</h1>
+            <p class="article-deck">
+              A conversation with Benyou Wang (&#29579;&#26412;&#21451;) on why AI must model human beliefs, close
+              real-world feedback loops, and use language-centered intelligence to act responsibly in messy worlds.
+            </p>
+            <div class="article-meta">
+              <span>Benyou Wang</span>
+              <span>2026</span>
+              <span>AI4S2 Blog</span>
+            </div>
+          </div>
+        </header>
+
+        <figure class="article-cover">
+          <img
+            src="../../../assets/img/benyou-wang-slai-open-day.jpg"
+            alt="Benyou Wang interviewed at the Shenzhen Loop Area Institute Open Day"
+          />
+          <figcaption>Benyou Wang interviewed at the Shenzhen Loop Area Institute Open Day.</figcaption>
+        </figure>
+
+        <div class="section article-section">
+          <div class="section-inner article-layout">
+            <aside class="article-toc" aria-label="Article contents">
+              <p class="section-kicker">Contents</p>
+              <a href="#economic-world-models">1. Economic World Models</a>
+              <a href="#closed-loops">2. Closed Loops</a>
+              <a href="#slai-platform">3. Why SLAI Matters</a>
+              <a href="#language-centered-ai">4. Language-Centered AI</a>
+              <a href="#advice-to-students">5. Advice to Students</a>
+            </aside>
+
+            <div class="article-body">
+              <p class="article-lede">
+                This post is adapted from an interview at the Shenzhen Loop Area Institute (SLAI) Open Day, where
+                several demos touched on economic world models, medical AI deployment, embodied intelligence,
+                brain-computer interfaces, and the future of research training.
+              </p>
+              <p>
+                The central message is simple: the next stage of AI will not be defined only by larger models, but by
+                whether we can build systems that understand messy worlds, close feedback loops, and solve real problems
+                with responsibility.
+              </p>
+
+              <h2 id="economic-world-models">1. Economic World Models Are Not Physics with Prices</h2>
+              <p>
+                At the Open Day, one demo focused on economic world models. The essential difference from physical world
+                models is that the physical world is governed primarily by objective laws, while the economic world is
+                shaped by human beliefs, expectations, emotions, and collective behavior.
+              </p>
+              <p>
+                In physics, rules do not change because particles believe something different about tomorrow. In
+                economics, the rules of the game can change precisely because people change what they believe. Markets
+                are not only mechanisms of price discovery; they are social arenas of expectation, trust, fear,
+                coordination, and panic.
+              </p>
+              <p>
+                This makes economic world models unusually difficult. A small change in the beliefs of a few influential
+                actors can trigger a black-swan event. A rumor, policy expectation, liquidity shock, or sudden shift in
+                confidence can reshape the landscape. Economic world models therefore need to model agents, incentives,
+                information flows, institutional constraints, belief updates, and emergent collective behavior.
+              </p>
+
+              <h2 id="closed-loops">2. Deployment Requires Closed Loops, Not Only Strong Models</h2>
+              <p>
+                Another question at the Open Day concerned HuatuoGPT, the medical large language model system deployed
+                across hospital and community healthcare settings. The core challenge of real AI deployment is not only
+                whether a model is strong; it is whether the system remains reliable when the model is uneven.
+              </p>
+              <p>
+                In many AI applications, we want a system to complete a sequence of actions and finish an entire task.
+                But current AI capability is jagged. Some abilities are surprisingly strong, while some seemingly simple
+                tasks still fail. In a long chain of actions, one weak link can break the whole system.
+              </p>
+              <p>
+                Domains such as chess, coding, and mathematics show one path forward: well-defined tasks, complete
+                inputs, explicit action spaces, smooth data flow, and verifiable outcomes. In such environments, AI can
+                attempt, verify, repair, and iterate. That is loop engineering: build a closed loop in which the system
+                can act, receive feedback, detect errors, and improve.
+              </p>
+              <p>
+                Medical AI needs the same discipline, but the medical world is more complex. Deployment should begin
+                with scenarios where the loop can be closed: pre-consultation, triage, patient education, structured
+                information collection, follow-up support, and bounded workflows with clear inputs, outputs, and
+                escalation rules.
+              </p>
+
+              <h2 id="slai-platform">3. Why SLAI Matters for Young Researchers</h2>
+              <p>
+                SLAI is distinctive because it is designed as a cross-sector, interdisciplinary platform at the
+                intersection of academia, industry, and research application. This makes it easier to organize work that
+                would be difficult inside a traditional university structure.
+              </p>
+              <p>
+                Recent work connects multiple centers and research teams, including social intelligence, language and
+                interactive intelligence, and embodied intelligence. The goal is to design new paradigms for human-AI
+                interaction: interaction closer to the full-duplex nature of human conversation, and systems that connect
+                dialogue, action planning, and execution.
+              </p>
+              <p>
+                Such work needs language models, multimodal perception, embodied planning, social simulation,
+                human-computer interaction, cognitive modeling, and real application scenarios. It also needs young
+                researchers willing to cross disciplinary boundaries and build together.
+              </p>
+
+              <h2 id="language-centered-ai">4. Language as the Brain of Embodied and Scientific Intelligence</h2>
+              <p>
+                Language is not only a channel for exchanging messages; it is also a medium for abstraction, planning,
+                reasoning, and self-reflection. For AI, this suggests that language intelligence remains one of the crown
+                jewels.
+              </p>
+              <p>
+                Embodied robots need strong perception and control, but they also need a high-level brain for task
+                understanding, planning, explanation, correction, and coordination with humans. AI for science needs
+                tools, data, simulation, and domain knowledge, but it also needs a language-centered reasoning layer that
+                can form hypotheses, connect concepts, and communicate with scientists.
+              </p>
+              <p>
+                The view here is language-centered, not language-only. Future intelligent systems will be multimodal,
+                embodied, tool-using, and connected to the physical and social world. But language will remain the
+                organizing medium that connects perception, action, memory, reasoning, and communication.
+              </p>
+
+              <h2 id="advice-to-students">5. Advice to Students: Write Papers on the Real Ground</h2>
+              <p>
+                Many students at the Open Day are aiming for top conferences such as NeurIPS, ICML, and ICLR. The advice
+                is to avoid treating research as leaderboard chasing. Research should solve real problems in the real
+                world.
+              </p>
+              <p>
+                Excellent research increasingly requires students to go into real scenarios, identify painful problems,
+                develop their own technical edge, and connect research results with application deployment and product
+                iteration. The loop should not stop at the paper. It should connect problem discovery, technical
+                invention, system building, user feedback, and scientific contribution.
+              </p>
+              <p>For students who want to publish at top conferences, the advice is therefore:</p>
+              <ul>
+                <li>do not only ask what benchmark you can improve;</li>
+                <li>ask what real problem has not yet been properly defined;</li>
+                <li>do not only search for a clever trick;</li>
+                <li>build a technical moat that comes from understanding the scenario;</li>
+                <li>do not only finish an experiment;</li>
+                <li>create a loop where research, deployment, feedback, and iteration strengthen one another.</li>
+              </ul>
+              <p>
+                The best AI research in the coming years will not be pure paper exercises. It will be research that
+                survives contact with the world.
+              </p>
+
+              <div class="article-source">
+                <p>
+                  Local AI4S2 copy adapted from the Freedom AI interview:
+                  <a href="https://freedomintelligence.github.io/blog/2026/slai-open-day-interview/" target="_blank" rel="noreferrer">
+                    original post
+                  </a>.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+    </main>
+
+    <footer class="site-footer">
+      <div class="section-inner footer-inner">
+        <span>2026 AI4S2. Hosted by GitHub Pages.</span>
+        <span>Center for AI for Social Science | Shenzhen Loop Area Institute</span>
+      </div>
+    </footer>
+
+    <script src="../../../assets/js/main.js"></script>
+  </body>
+</html>
