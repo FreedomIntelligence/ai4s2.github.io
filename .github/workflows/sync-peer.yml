@@ -144,6 +144,8 @@ jobs:
       - name: Configure Pages
         if: steps.sync.outputs.deploy == 'true'
         uses: actions/configure-pages@v5
+        with:
+          enablement: true
 
       - name: Prepare static site
         if: steps.sync.outputs.deploy == 'true'
