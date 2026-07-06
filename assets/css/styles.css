@@ -396,6 +396,12 @@ img {
   padding-top: clamp(46px, 6vw, 78px);
 }
 
+.intro-band h2 {
+  max-width: 480px;
+  font-size: clamp(28px, 3.4vw, 46px);
+  line-height: 1.08;
+}
+
 .intro-grid,
 .split-grid,
 .evidence-grid,
@@ -409,7 +415,7 @@ img {
 
 h2 {
   margin: 0;
-  font-size: clamp(31px, 4.5vw, 56px);
+  font-size: clamp(29px, 3.6vw, 46px);
   line-height: 1.05;
   letter-spacing: 0;
 }
@@ -434,7 +440,8 @@ p + p {
 }
 
 .intro-copy {
-  font-size: 18px;
+  font-size: clamp(16px, 1.3vw, 17px);
+  line-height: 1.65;
   color: var(--muted);
 }
 
@@ -556,6 +563,8 @@ p + p {
 
 .media-frame {
   margin: 0;
+  width: min(100%, 500px);
+  justify-self: end;
   border: 1px solid var(--line);
   background: #fff;
   box-shadow: var(--shadow);
@@ -1673,6 +1682,10 @@ figcaption {
   .project-feature-visual img {
     min-height: 0;
     aspect-ratio: 1.62;
+  }
+
+  .media-frame {
+    justify-self: center;
   }
 
   .project-detail-card {
